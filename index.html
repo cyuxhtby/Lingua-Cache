@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>linguacache</title>
+    <meta name="description" content="Language Learning - A-Frame">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse">
+      <a-camera></a-camera>
+
+      <a-text id="main-text" value="This is Text" 
+              position="0 1.6 -3" 
+              align="center" 
+              color="white" 
+              width="6">
+      </a-text>
+      <a-text id="sub-text" value="this is smaller text" 
+              position="0 1.2 -3" 
+              align="center" 
+              color="grey" 
+              width="6"
+              scale="0.5 0.5 0.5">
+      </a-text>
+
+      <a-entity id="previous-btn" position="-1.5 1.4 -3">
+        <a-plane color="#FFF" opacity="0.0" width="0.5" height="0.5"></a-plane>
+        <a-text value="&lt;" align="center" position="0 0 0.1" color="white"></a-text>
+      </a-entity>
+      <a-entity id="next-btn" position="1.5 1.4 -3">
+        <a-plane color="#FFF" opacity="0.0" width="0.5" height="0.5"></a-plane>
+        <a-text value="&gt;" align="center" position="0 0 0.1" color="white"></a-text>
+      </a-entity>
+
+      <a-sky color="#000000"></a-sky>
+    </a-scene>
+
+    <script>
+      var phrases = [
+        { main: "This is Text", sub: "this is smaller text" },
+        { main: "Another Text", sub: "another smaller text" },
+      ];
+      var currentIndex = 0;
+
+      document.querySelector('#next-btn').addEventListener('click', function () {
+        currentIndex = (currentIndex + 1) % phrases.length;
+        updateText();
+      });
+
+      document.querySelector('#previous-btn').addEventListener('click', function () {
+        currentIndex = (currentIndex - 1 + phrases.length) % phrases.length;
+        updateText();
+      });
+
+      function updateText() {
+        var mainText = document.querySelector('#main-text');
+        var subText = document.querySelector('#sub-text');
+        mainText.setAttribute('value', phrases[currentIndex].main);
+        subText.setAttribute('value', phrases[currentIndex].sub);
+      }
+    </script>
+  </body>
+</html>
