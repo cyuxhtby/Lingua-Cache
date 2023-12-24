@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <title>Lingua Cache</title>
   <meta name="description" content="Language Learning in Virtual Reality">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
 </head>
 <body>
   <a-scene cursor="rayOrigin: mouse">
+    <!--google font support <a-entity text="value:texthere; color:#FFFFFF; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/arimo/Arimo-Regular.json;"></a-entity>-->
+    <!-- custom character support https://msdf-bmfont.donmccurdy.com/ -->
     <a-camera></a-camera>
-    <a-text id="main-text" position="0 1.6 -3" align="center" color="white" width="6"></a-text>
+    <a-text id="main-text" font="assets/font/custom-msdf.json" color="white" negate="false" position="0 1.6 -3" align="center"></a-text>
     <a-text id="sub-text" position="0 1.2 -3" align="center" color="grey" width="6" scale="0.5 0.5 0.5"></a-text>
     <a-entity id="previous-btn" position="-1.5 1.4 -3">
       <a-plane color="#FFF" opacity="0.0" width="0.5" height="0.5"></a-plane>
