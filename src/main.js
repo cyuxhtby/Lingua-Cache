@@ -1,19 +1,37 @@
 import { db, collection, getDocs } from './firebase.js';
 
 let phrases = [];
-let currentIndex = 0;
+let states = []; 
 
 const updateText = () => {
-  const mainText = document.querySelector('#main-text');
-  const subText = document.querySelector('#sub-text');
-  mainText.setAttribute('value', phrases[currentIndex].main);
-  subText.setAttribute('value', phrases[currentIndex].sub);
+  const clickableBoxes = document.querySelectorAll('.clickable');
+  if (clickableBoxes.length === 0) {
+    return;
+  }
+  clickableBoxes.forEach((box, index) => {
+    const text = box.querySelector('.foreign-text');
+    if (phrases[index]) {
+      text.setAttribute('value', phrases[index].main);
+      states[index] = 'main';  // Initialize state as 'main'
+
+      box.addEventListener('click', () => {
+        if (states[index] === 'main') {
+          text.setAttribute('value', phrases[index].sub);
+          states[index] = 'sub';
+        } else {
+          text.setAttribute('value', phrases[index].main);
+          states[index] = 'main';
+        }
+      });
+    }
+  });
 };
 
 const fetchPhrases = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, "phrases"));
     phrases = querySnapshot.docs.map(doc => doc.data());
+    console.log('Fetched phrases:', phrases);
     updateText();
   } catch (error) {
     console.error("Error fetching phrases:", error);
@@ -22,17 +40,4 @@ const fetchPhrases = async () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchPhrases();
-
-  const nextBtn = document.querySelector('#next-btn');
-  const previousBtn = document.querySelector('#previous-btn');
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % phrases.length;
-    updateText();
-  });
-
-  previousBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + phrases.length) % phrases.length;
-    updateText();
-  });
 });

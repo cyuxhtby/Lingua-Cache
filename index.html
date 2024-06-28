@@ -7,23 +7,41 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
-</head>
 <body>
   <a-scene cursor="rayOrigin: mouse">
     <!--google font support <a-entity text="value:texthere; color:#FFFFFF; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/arimo/Arimo-Regular.json;"></a-entity>-->
     <!-- custom character support https://msdf-bmfont.donmccurdy.com/ -->
-    <a-camera fov="60" ></a-camera>
-    <a-text id="main-text"  font="assets/font/custom-msdf.json" color="white" negate="false" position="0 1.6 -10" align="center" scale="1 1 1" visible="true" width="10"></a-text>
-    <a-text id="sub-text"  position="0 1 -8" align="center" color="white"  scale="0.5 0.5 0.5" visible="true" width="10"></a-text>
-    <a-entity id="previous-btn" position="-3 1.4 -6">
-      <a-plane color="#FFF" opacity="0.0" width="0.5" height="0.5"></a-plane>
-      <a-text value="&lt;" align="center" position="0 0 0.1" color="white"></a-text>
+    <!-- Fixed text on 360-degree layout -->
+    <a-entity position="-3 1.6 -3">
+      <a-box position="0 0 0" width="6" height="2" depth="0.1" color="#fff" opacity="0" class="clickable" rotation="0 45 0">
+        <a-text class="foreign-text" position="0 0 0.1" font="assets/font/custom-msdf.json" color="white" value="" negate="false" align="center" width="5"></a-text>
+      </a-box>
     </a-entity>
-    <a-entity id="next-btn" position="3 1.4 -6">
-      <a-plane color="#FFF" opacity="0.0" width="0.5" height="0.5"></a-plane>
-      <a-text value="&gt;" align="center" position="0 0 0.1" color="white"></a-text>
+    <a-entity position="0 1.6 -5">
+      <a-box position="0 0 0" width="6" height="2" depth="0.1" color="#fff" opacity="0" class="clickable" rotation="0 0 0">
+        <a-text class="foreign-text" position="0 0 0.1" font="assets/font/custom-msdf.json" color="white" value="" negate="false" align="center" width="5"></a-text>
+      </a-box>
     </a-entity>
-  </a-entity>
+    <a-entity position="3 1.6 -3">
+      <a-box position="0 0 0" width="6" height="2" depth="0.1" color="#fff" opacity="0" class="clickable" rotation="0 -45 0">
+        <a-text class="foreign-text" position="0 0 0.1" font="assets/font/custom-msdf.json" color="white" value="" negate="false" align="center" width="5"></a-text>
+      </a-box>
+    </a-entity>
+    <a-entity position="3 1.6 3">
+      <a-box position="0 0 0" width="6" height="2" depth="0.1" color="#fff" opacity="0" class="clickable" rotation="0 -135 0">
+        <a-text class="foreign-text" position="0 0 0.1" font="assets/font/custom-msdf.json" color="white" value="" negate="false" align="center" width="5"></a-text>
+      </a-box>
+    </a-entity>
+    <a-entity position="0 1.6 5">
+      <a-box position="0 0 0" width="6" height="2" depth="0.1" color="#fff" opacity="0" class="clickable" rotation="0 180 0">
+        <a-text class="foreign-text" position="0 0 0.1" font="assets/font/custom-msdf.json" color="white" value="" negate="false" align="center" width="5"></a-text>
+      </a-box>
+    </a-entity>
+    <a-entity position="-3 1.6 3">
+      <a-box position="0 0 0" width="6" height="2" depth="0.1" color="#fff" opacity="0" class="clickable" rotation="0 135 0">
+        <a-text class="foreign-text" position="0 0 0.1" font="assets/font/custom-msdf.json" color="white" value="" negate="false" align="center" width="5"></a-text>
+      </a-box>
+    </a-entity>
     <a-sky src="assets/img/scene.jpg"></a-sky>
   </a-scene>
   <script src="/main.bundle.js"></script>
